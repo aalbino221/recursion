@@ -7,12 +7,28 @@ function mergeSort(array) {
   const arrayTwo = mergeSort(array);
 
   let helper = [];
+  let i = 0 ,j = 0;
 
-  while (arrayOne.length != 0 && arrayTwo.length != 0) {
-    arrayOne[0] <= arrayTwo[0] ? helper.push(arrayOne.shift()) : helper.push(arrayTwo.shift());
+  while (arrayOne.length > i && arrayTwo.length > j) {
+    if (arrayOne[i] <= arrayTwo[j]) { 
+      helper.push(arrayOne[i]);
+      i++;
+    } 
+    else {
+      helper.push(arrayTwo[j]);
+      j++;
+    }
   }
 
-  arrayOne.length == 0 ? helper.push(arrayTwo[0]) : helper.push(arrayOne[0]);
+  while (arrayOne.length == i) {
+    helper.push(arrayTwo[j]);
+    i++;
+  }
+
+  while (arrayTwo.length == j) {
+    helper.push(arrayOne[i]);
+    j++;
+  }
 
   return helper;
 }
